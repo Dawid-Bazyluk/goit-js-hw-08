@@ -16,9 +16,17 @@ inputForm.addEventListener('input', _.throttle(saveInput, 500));
 
 const storedValue = JSON.parse(localStorage.getItem(STORAGE_KEY));
 if (localStorage.getItem(STORAGE_KEY) === null) {
-  inputEmail.value = "";
-  inputText.value = "";
+  inputEmail.value = '';
+  inputText.value = '';
 } else {
   inputEmail.value = storedValue.email;
-  inputText.value = storedValue.message
-  }
+  inputText.value = storedValue.message;
+}
+
+inputForm.addEventListener('submit', e => {
+  e.preventDefault();
+  console.log(localStorage.getItem(STORAGE_KEY));
+  inputEmail.value = '';
+  inputText.value = '';
+  localStorage.removeItem(STORAGE_KEY);
+});
